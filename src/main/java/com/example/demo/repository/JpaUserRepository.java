@@ -11,6 +11,12 @@ public class JpaUserRepository  implements UserRepository{
 
     @PersistenceContext
     EntityManager em;
+
+    @Override
+    public boolean verify(String name, String psw) {
+        return false;
+    }
+
     @Override
     public void add(User user) {
         em.persist(user);

@@ -9,7 +9,7 @@ public class RegisterServiceImpl implements RegisterService{
     public RegisterServiceImpl(UserRepository userRepository){this.userRepository=userRepository; }
 
     @Override
-    public void register(User user) {
+    public void registerAccount(User user) {
         userRepository.add(user);
     }
 }

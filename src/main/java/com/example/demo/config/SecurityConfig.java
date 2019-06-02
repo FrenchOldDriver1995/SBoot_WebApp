@@ -28,24 +28,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+//        http.authorizeRequests()
+//                .anyRequest().authenticated()
+//                .mvcMatchers("/admin/*").hasRole("admin")
+//                .mvcMatchers("/about", "help").permitAll()
+//                .and()
+//                .formLogin()
+////                .failureUrl("/authentication/login?failed")
+////                .loginPage("/authentication/login")
+////                .loginProcessingUrl("/authentication/login/process")
+//                .and()
+//                .csrf().disable();
+////        http.authorizeRequests()
+////                .mvcMatchers("/admin/*").hasRole("/ADMIN")
+////                .mvcMatchers("/about", "help").permitAll()
+////                .anyRequest().authenticated()
+////                .
+//
+//        super.configure(http);
+        /**
+         * 下面是更新版
+         *
+         */
         http.authorizeRequests()
+                .mvcMatchers("/admin/*").hasRole("ADMIN")
+                .mvcMatchers("/","/login.html").permitAll()
                 .anyRequest().authenticated()
-                .mvcMatchers("/admin/*").hasRole("admin")
-                .mvcMatchers("/about", "help").permitAll()
                 .and()
-                .formLogin()
-//                .failureUrl("/authentication/login?failed")
-//                .loginPage("/authentication/login")
-//                .loginProcessingUrl("/authentication/login/process")
+                .formLogin().loginPage("/login.html")
                 .and()
                 .csrf().disable();
-//        http.authorizeRequests()
-//                .mvcMatchers("/admin/*").hasRole("/ADMIN")
-//                .mvcMatchers("/about", "help").permitAll()
-//                .anyRequest().authenticated()
-//                .
-
-        super.configure(http);
     }
 
 
